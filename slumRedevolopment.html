@@ -1,0 +1,311 @@
+# slumRedevolopmentForm
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Slum Redevelopment Form</title>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/materialize.min.js"></script>
+    <script src="js/material.min.js"></script>
+    <link rel="stylesheet" href="css/materialize.min.css">
+    <link rel="stylesheet" href="css/material.min.css">
+    <link rel="stylesheet" href="css/InSitu.css">
+    <link rel="stylesheet" href="css/slumRD.css">
+    <script>        
+        $(document).ready(function() {
+            $('select').material_select();
+        });
+    </script>
+
+    <script>
+    var countryStateInfo = {
+	"USA": {
+		"California": {
+			"Los Angeles": ["90001", "90002", "90003", "90004"],
+			"San Diego": ["92093", "92101"]
+		},
+		"Texas": {
+			"Dallas": ["75201", "75202"],
+			"Austin": ["73301", "73344"]
+		}
+	},
+	"India": {
+		"Assam": {
+			"Dispur": ["781005"],
+			"Guwahati" : ["781030", "781030"]
+		},
+		"Gujarat": {
+			"Vadodara" : ["390011", "390020"],
+			"Surat" : ["395006", "395002"]
+		}
+	}
+}
+
+
+window.onload = function () {
+	
+	//Get html elements
+	var countySel = document.getElementById("countySel");
+	var stateSel = document.getElementById("stateSel");	
+	var citySel = document.getElementById("citySel");
+	var zipSel = document.getElementById("zipSel");
+	
+	//Load countries
+	for (var country in countryStateInfo) {
+		countySel.options[countySel.options.length] = new Option(country, country);
+	}
+	
+	//County Changed
+	countySel.onchange = function () {
+		 
+		 stateSel.length = 1; // remove all options bar first
+		 citySel.length = 1; // remove all options bar first
+		 zipSel.length = 1; // remove all options bar first
+		 
+		 if (this.selectedIndex < 1)
+			 return; // done
+		 
+		 for (var state in countryStateInfo[this.value]) {
+			 stateSel.options[stateSel.options.length] = new Option(state, state);
+		 }
+	                $('select').material_select();
+    }
+	
+	//State Changed
+	stateSel.onchange = function () {		 
+		 
+		 citySel.length = 1; // remove all options bar first
+		 zipSel.length = 1; // remove all options bar first
+		 
+		 if (this.selectedIndex < 1)
+			 return; // done
+		 
+		 for (var city in countryStateInfo[countySel.value][this.value]) {
+			 citySel.options[citySel.options.length] = new Option(city, city);
+		 }
+                         $('select').material_select();
+	}
+	
+	//City Changed
+	citySel.onchange = function () {
+		zipSel.length = 1; // remove all options bar first
+		
+		if (this.selectedIndex < 1)
+			return; // done
+		
+		var zips = countryStateInfo[countySel.value][stateSel.value][this.value];
+		for (var i = 0; i < zips.length; i++) {
+			zipSel.options[zipSel.options.length] = new Option(zips[i], zips[i]);
+		}
+                        $('select').material_select();
+    }
+    $('select').material_select();
+}
+
+    </script>
+
+</head>
+<body>
+    <nav class="inSituHead">
+        <div class="nav-wrapper">
+          <h4 style="margin-left:60px;">Formate A-Information of Survey Being Covered Under Slum Redevelopment</h4>
+          </ul>
+        </div>
+      </nav>
+
+<form name="form4AInSitu" class="inSituForm">
+          <div class="col row-1">
+          <div class="row input-field s6 frm2">
+        <select id="countySel" size="1">
+              <option value="" selected="selected">State Name</option>
+          </select>
+          <select id="citySel" size="1">
+              <option value="" selected="selected">City Name</option>
+          </select>
+          </div>
+          </div>
+                    
+          <div class="row input-field s6 frm2 state2">
+          <select id="stateSel" size="1">
+          <option value="" selected="selected">District Name</option>
+          </select>
+          <select id="zipSel" size="1">
+              <option value="" selected="selected">Ward Name</option>
+          </select>
+          </div>
+
+          <br><br><br><br><br><br><br><br>
+          <div class="col row-1">
+                <div class="row input-field s6 frm2">
+                      <input name="slumName" id="icon_prefix" type="text" class="validate">
+                      <label for="icon_prefix">Slum Name</label>
+                </div>
+                 </div>
+                 <div class="row input-field s6 frm2 state2">
+                      <input name="areaName" id="icon_prefix" type="text" class="validate">
+                      <label for="icon_prefix">Area Name</label>
+                 </div> 
+
+                 
+
+
+          <div class="row" >
+            <div class="input-field col s8 slumName">
+                <select name="preferredComponent">
+                    <option value="">Preferred Component of Mission under which survey need Assistance under HFA</option>
+                    <option value="01">In Situ Slum Redevelopment</option>
+                    <option value="02">ANDHRA PRADESH</option>
+                    <option value="03">ARUNACHAL PRADESH</option>
+                </select>
+              </div>
+          </div>
+
+          <div class="col row-1">
+          <div class="row input-field s6 frm2">
+                <input name="nameOfHead" id="icon_prefix" type="text" class="validate">
+                <label for="icon_prefix">Name of Head of the Family</label>
+          </div><br>    
+          <div class="row input-field s6 frm2">
+                <input name="fathersName" id="icon_prefix" type="text" class="validate"> 
+                <label for="icon_prefix">Father's Name</label>
+           </div>
+           </div>
+           <div class="row input-field s6 frm2 state2">
+            <select name="sex">
+                  <option value="">Select sex</option>
+                  <option value="01">Male</option>
+                  <option value="02">Female</option>
+                  <option value="03">Transgender</option>
+                </select>
+          </div>
+          <div class="row input-field s6 frm2 state2">
+                <input name="ageOfHead" id="icon_prefix" type="text" class="validate">
+                <label for="icon_prefix">Age of Head of Family</label>
+           </div> 
+           
+            <div class="row" >
+            <div class="input-field col s8 slumName">
+            <label style="color:black;">Address and other Contact Details:</label>
+            </div>
+            </div>
+        <br><br>
+        <div class="row">
+            <div class="input-field col s8 slumName">
+              <input name="houseNo" id="icon_prefix" type="text" class="validate">
+              <label for="icon_prefix">House/Flat/Door No</label>
+        </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s8 slumName">
+              <input name="streetName" id="icon_prefix" type="text" class="validate">
+              <label for="icon_prefix">Name of the Street</label>
+        </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s8 slumName">
+              <input name="City" id="icon_prefix" type="text" class="validate">
+              <label for="icon_prefix">City Name</label>
+        </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s8 slumName">
+              <input name="state" id="icon_prefix" type="text" class="validate">
+              <label for="icon_prefix">State Name</label>
+        </div>
+        </div>
+        <div class="row">
+        <div class="input-field col s8 slumName">
+              <input name="district" id="icon_prefix" type="text" class="validate">
+              <label for="icon_prefix">District Name</label>
+        </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s8 slumName">
+              <input name="Mobile" id="icon_prefix" type="text" class="validate">
+              <label for="icon_prefix">Mobile No</label>
+        </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s8 slumName">
+              <input name="aadhar" id="icon_prefix" type="text" class="validate">
+              <label for="icon_prefix">Aadhar No</label>
+        </div>
+        </div>
+ 
+                  <div>   <!-- THIS DIVISION IS ONLY FOR FAMILY MEMBER DETAILS -->
+          <p class="row-2">Family member Details:</p>
+          <div style="width:60px" class="fmd number">
+              <div class="input-field col">
+                <input name="serialNo" id="icon_prefix" type="text" class="validate">
+                <label for="icon_prefix">S. No.</label>
+              </div>
+            </div>
+            <div style="width:180px" class="row number">
+              <div class="input-field col">
+                <input name="name" id="icon_prefix" type="text" class="validate">
+                <label for="icon_prefix">Name</label>
+              </div>
+            </div>
+          
+          <div class="projectCode">
+            <div style="width:120px"  class="row input-field s6 frm2 proCode">
+              <select name="relation">
+                  <option value="">Select Relation</option>
+                  <option value="01">XYZ</option>
+                  <option value="02">PQR</option>
+                  <option value="03">LMN</option>
+              </select>
+            </div>
+            <div style="width:100px"  class="col input-field s6 frm2 proCode">
+                <select class="newFont" name="Gender">
+                    <option value="">Select Gender</option>
+                    <option value="01">Male</option>
+                    <option value="02">Female</option>
+                    <option value="03">Transgender</option>
+                </select>
+            </div>
+            <div style="width:80px" class="row number">
+              <div class="input-field col fmd">
+                <input name="projectName" id="icon_prefix" type="text" class="validate">
+                <label for="icon_prefix">Age</label>
+              </div>
+            </div>
+            <div style="width:130px" class="row number">
+                <div class="input-field col proName">
+                  <input name="aadharNo" id="icon_prefix" type="text" class="validate">
+                  <label for="icon_prefix">Aadhar No.</label>
+                </div>
+              </div>
+              <div style="width:130px" class="row number">
+                <div class="input-field col proName">
+                        <button class="waves-effect waves-light btn fbtn">button</button>
+                </div>
+              </div>
+        </div>
+        </div><!--END OF FAMILY MEMBER DETAILS DIVISION-->
+        <br><br><br><br><br>
+             <div class="col row-1">
+                <div class="row input-field s6 frm2">
+                        <select class="newFont" name="religion">
+                                <option value="">Select Religion</option>
+                                <option value="01">A</option>
+                                <option value="02">B</option>
+                                <option value="03">C</option>
+                            </select>
+                       </div>
+                </div>
+                
+                <div class="row input-field s6 frm2 state2">
+                        <select class="newFont" name="caste">
+                                <option value="">Select Caste</option>
+                                <option value="01">A</option>
+                                <option value="02">B</option>
+                                <option value="03">C</option>
+                            </select>
+       
+                </div>
+      
+          
+      </form>
+</body>
+</html>
