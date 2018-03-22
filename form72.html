@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Project Information</title>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/materialize.min.js"></script>
+    <script src="js/material.min.js"></script>
+    <link rel="stylesheet" href="css/materialize.min.css">
+    <link rel="stylesheet" href="css/material.min.css">
+    <link rel="stylesheet" href="css/slumRD.css">
+    <link rel="stylesheet" href="css/InSitu.css">
+    <script src="js/stateCity.js"></script>
+    <script>        
+        $(document).ready(function() {
+            $('select').material_select();
+        });
+    </script>
+
+
+</head>
+<body>
+    <nav class="inSituHead">
+        <div class="nav-wrapper">
+          <h4 style="margin-left:60px;">List of DPR Submitted</h4>
+          </ul>
+        </div>
+      </nav>
+    
+      <form name="dprList" class="inSituForm">
+        <br><br>   
+        <div class="row" style="margin-left:-10px;">
+                    <div class="input-field col s8 slumName">
+                        <select name="preferredComponent">
+                            <option value="">Mission Component</option>
+                            <option value="01">"In situ" Slum Redevelopment</option>
+                            <option value="02">Affordable Housing through Credit Linked Subsidy</option>
+                            <option value="03">Affordable Housing in Partnership</option>
+                            <option value="03">Subsidy for beneficiary-led individual house construction or enhancement</option>
+                        </select>
+                      </div>
+                  </div>
+        
+        <div class="row">
+                <div class="row input-field s6 frm2">
+                        <select required name="stateName" onChange="changecat(this.value);">
+                                <option value="">Select State</option>
+                                <option value="Andhra Pradesh">ANDHRA PRADESH</option>
+                                <option value="Arunachal Pradesh">ARUNACHAL PRADESH</option>
+                                <option value="Assam">ASSAM</option>
+                                <option value="Bihar">BIHAR</option>
+                                <option value="Chandigarh">CHANDIGARH</option>
+                                <option value="Chattisgarh">CHHATTISGARH</option>
+                                <option value="Dadra and Nagar Haveli">DADRA AND NAGAR HAVELI</option>
+                                <option value="Daman and Diu">DAMAN AND DIU</option>
+                                <option value="Delhi">Delhi</option>
+                                <option value="Goa">GOA</option>
+                                <option value="Gujrat">GUJARAT</option>
+                                <option value="Haryana">HARYANA</option>
+                                <option value="Himachal Pradesh">HIMACHAL PRADESH</option>
+                                <option value="Jammu and Kashmir">JAMMU AND KASHMIR</option>
+                                <option value="Jharkhand">JHARKHAND</option>
+                                <option value="Karnataka">KARNATAKA</option>
+                                <option value="Kerela">KERALA</option>
+                                <option value="Madhya Pradesh">MADHYA PRADESH</option>
+                                <option value="Maharashtra">MAHARASHTRA</option>
+                                <option value="Manipur">MANIPUR</option>
+                                <option value="Meghalaya">MEGHALAYA</option>
+                                <option value="Mizoram">MIZORAM</option>
+                                <option value="Nagaland">NAGALAND</option>
+                                <option value="Odisha">ODISHA</option>
+                                <option value="Puducherry">PUDUCHERRY</option>
+                                <option value="Punjab">PUNJAB</option>
+                                <option value="Rajasthan">RAJASTHAN</option>
+                                <option value="Sikkim">SIKKIM</option>
+                                <option value="Tamil Nadu">TAMIL NADU</option>
+                                <option value="Telangana">TELANGANA</option>
+                                <option value="Tripura">TRIPURA</option>
+                                <option value="Uttar Pradesh">UTTAR PRADESH</option>
+                                <option value="Uttrakhand">UTTARAKHAND</option>
+                                <option value="West Bengal">WEST BENGAL</option>
+                        </select>
+                </div>
+
+
+                <div class="row input-field s6 frm2 state2"> 
+                        <select required name="districtName" id="city">
+                        <option value="">District Name</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="col row-1" style="margin-left:-0px;"> 
+                    <div class="row input-field s6 frm2">
+                            <input name="cityName" id="icon_prefix" type="text" class="validate">
+                            <label for="icon_prefix">City Name</label> 
+                    </div>
+                     </div>
+                     <div class="row input-field s6 frm2 state2">
+                      <select name="financilYear">
+                            <option value="">Select Financial Year</option>
+                            <option value="01">2014</option>
+                            <option value="02">2015</option>
+                            <option value="03">2016</option>
+                            <option value="04">2017</option>
+                            <option value="05">2018</option>
+                            <option value="06">2019</option>
+                            <option value="07">2020</option>
+                            <option value="08">2021</option>
+                            <option value="09">2022</option>
+                          </select>
+                    </div>
+                <br><br><br><br><br>
+                <div class="row number" style="margin-left:30px;">
+                    <div class="input-field col proName">
+                        <button name="show" class="waves-effect waves-light btn fbtn">Show</button>
+                  </div>
+                  </div>
+                  <div class="row number">
+                    <div class="input-field col proName">
+                        <button name="canclebtn" class="waves-effect waves-light btn fbtn">Cancle</button>
+                    </div>
+                  </div>
+                  
+                  <div style="margin-right:60px;">
+                        <table class="striped">
+                          <thead>
+                            <tr>
+                                <th>S.No</th>
+                                <th>Project <br>Name</th>
+                                <th>Project <br>Code</th>
+                                <th>Project <br>Cost</th>
+                                <th>Component <br>Name</th>
+                                <th>Implementing <br>Agency</th>
+                                <th>DPR <br>Status</th>
+                                <th>No. of Beneficiary <br>As Per DPR</th>
+                                <th>No. of Beneficiary <br>Attached</th>
+                            </tr>
+                          </thead>
+                  
+                          <tbody>
+                            <tr>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                                  <td></td>
+                                  <td></td>
+                                  <td></td>
+                                  <td></td>
+                                  <td></td>
+                                  <td></td>
+                                  <td></td>
+                                  <td></td>
+                                  <td></td>
+                                </tr>
+                                <tr>
+                                      <td></td>
+                                      <td></td>
+                                      <td></td>
+                                      <td></td>
+                                      <td></td>
+                                      <td></td>
+                                      <td></td>
+                                      <td></td>
+                                      <td></td>
+                                    </tr>
+                          </tbody>
+                        </table>
+                      </div>
+      
+            </form>
+    </body>
+</html>
